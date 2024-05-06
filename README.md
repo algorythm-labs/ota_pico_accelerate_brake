@@ -10,6 +10,3 @@ But Visual Studio works very well for development.
 
 A Pico can run by itself connected to a powerbank using Wifi if a main.py exists.
 Can be copied using Thonny.
-
-When a main.py has been copied to the microcontroller it needs to be reset to do changes.
-TO BE UPDATED

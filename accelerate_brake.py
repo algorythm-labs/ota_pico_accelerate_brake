@@ -107,12 +107,12 @@ def serve(connection):
             state = "OFF"
             status = "Turn off light"
         elif request =="/accelerate?" or request =="/accelerate":
-            #status = _thread.start_new_thread(accelerate,())
-            status = _thread.start_new_thread(brake,())
+            status = _thread.start_new_thread(accelerate,())
+            #status = _thread.start_new_thread(brake,())
             state = "OFF"        
         elif request =="/brake?" or request =="/brake":
-            #status = _thread.start_new_thread(brake,())
-            status = _thread.start_new_thread(accelerate,())
+            status = _thread.start_new_thread(brake,())
+            #status = _thread.start_new_thread(accelerate,())
             state = "OFF"        
         elif request =="/alloff?":
             status = "Turning of all"

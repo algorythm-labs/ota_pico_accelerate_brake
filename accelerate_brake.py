@@ -100,35 +100,34 @@ def serve(connection):
             request = request.split()[1]
         except IndexError:
             pass
-        if addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
-            if request == "/lighton?":
-                LED.value(1)
-                state = "ON"
-                status = "Turn on light"
-            elif request =="/lightoff?":
-                LED.value(0)
-                state = "OFF"
-                status = "Turn off light"
-            elif request =="/accelerate?" or request =="/accelerate":
-                status = _thread.start_new_thread(accelerate,())
-                #status = _thread.start_new_thread(brake,())
-                state = "OFF"        
-            elif request =="/brake?" or request =="/brake":
-                status = _thread.start_new_thread(brake,())
-                #status = _thread.start_new_thread(accelerate,())
-                state = "OFF"        
-            elif request =="/alloff?":
-                status = "Turning of all"
-                LED.value(0)
-                Accelerate.value(0)
-                Brake.value(0)
-                state = "OFF"
-            elif request =="/allon?":
-                status = "Turning on all"
-                LED.value(1)
-                Accelerate.value(1)
-                Brake.value(1)
-                state = "ON"
+        if (request == "/lighton?") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+            LED.value(1)
+            state = "ON"
+            status = "Turn on light"
+        elif (request =="/lightoff?") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+            LED.value(0)
+            state = "OFF"
+            status = "Turn off light"
+        elif (request =="/accelerate?" or request =="/accelerate") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+            status = _thread.start_new_thread(accelerate,())
+            #status = _thread.start_new_thread(brake,())
+            state = "OFF"        
+        elif (request =="/brake?" or request =="/brake") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+            status = _thread.start_new_thread(brake,())
+            #status = _thread.start_new_thread(accelerate,())
+            state = "OFF"        
+        elif (request =="/alloff?") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+            status = "Turning of all"
+            LED.value(0)
+            Accelerate.value(0)
+            Brake.value(0)
+            state = "OFF"
+        elif (request =="/allon?") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+            status = "Turning on all"
+            LED.value(1)
+            Accelerate.value(1)
+            Brake.value(1)
+            state = "ON"
         elif request =="/check?" or request =="/check":            
             status = "Checking for new software"
             newSoftware = ota_updater.check_for_updates()

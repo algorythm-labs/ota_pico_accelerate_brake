@@ -100,29 +100,30 @@ def serve(connection):
             request = request.split()[1]
         except IndexError:
             pass
-        if (request == "/lighton?") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+        ip = addr[0]
+        if (request == "/lighton?") and ip in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
             LED.value(1)
             state = "ON"
             status = "Turn on light"
-        elif (request =="/lightoff?") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+        elif (request =="/lightoff?") and ip in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
             LED.value(0)
             state = "OFF"
             status = "Turn off light"
-        elif (request =="/accelerate?" or request =="/accelerate") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+        elif (request =="/accelerate?" or request =="/accelerate") and ip in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
             status = _thread.start_new_thread(accelerate,())
             #status = _thread.start_new_thread(brake,())
             state = "OFF"        
-        elif (request =="/brake?" or request =="/brake") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+        elif (request =="/brake?" or request =="/brake") and ip in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
             status = _thread.start_new_thread(brake,())
             #status = _thread.start_new_thread(accelerate,())
             state = "OFF"        
-        elif (request =="/alloff?") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+        elif (request =="/alloff?") and ip in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
             status = "Turning of all"
             LED.value(0)
             Accelerate.value(0)
             Brake.value(0)
             state = "OFF"
-        elif (request =="/allon?") and addr in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
+        elif (request =="/allon?") and ip in ALLOWED_TO_USE_BLINKERS_ENDPOINTS:
             status = "Turning on all"
             LED.value(1)
             Accelerate.value(1)

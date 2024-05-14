@@ -3,8 +3,10 @@ import socket
 import utime
 import machine
 import _thread
-from CONFIG import SSID, PASSWORD, PORT, URL, FILE, ALLOWED_TO_USE_BLINKERS_ENDPOINTS
+from CONFIG import SSID, PASSWORD, PORT, URL, FILE
 from ota import OTAUpdater
+
+ALLOWED_TO_USE_BLINKERS_ENDPOINTS = ["192.168.100.1"]
 
 LED = machine.Pin("LED",machine.Pin.OUT)
 Accelerate = machine.Pin(7,machine.Pin.OUT) 
